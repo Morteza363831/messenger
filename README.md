@@ -39,6 +39,28 @@ A full-stack **chat messenger** application designed for **real-time communicati
 
 ---
 
+## Architecture
+
+```
++-------------+      WebSocket/STOMP     +---------------+
+|   Frontend  | <----------------------> | Spring Boot    |
+|   (Vaadin)  |                          | + WebSocket    |
++-------------+                          +---------------+
+        |                                       |
+        | REST API (JWT)                        |
+        v                                       v
++---------------+                        +---------------+
+|   User Auth   |                        | Message Broker |
+|   Service     |                        | (SimpleBroker /|
++---------------+                        | RabbitMQ)      |
+        |                                       |
+        v                                       v
++----------------------------------------------+
+|             PostgreSQL / MySQL               |
+|       Users | Sessions | Messages (JSON)     |
++----------------------------------------------+
+```
+
 ## 🧑‍💻 Contributors
 
 A collaborative effort by an enthusiastic team:
